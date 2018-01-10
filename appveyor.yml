@@ -7,11 +7,8 @@ environment:
     secure: /ghqbCXBo5yebZkklH+X9w==
 build_script:
 - cmd: docker build -t matsskoglund/devkitapi .
-artifacts:
-- path: /bin/Debug/netcoreapp2.0/publish/DevkitApi.dll
-  name: Devkit
 deploy_script:
 - cmd: >-
-    docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
+    docker login -u=$env:DOCKER_USER -p=$env:DOCKER_PASS
     docker push matsskoglund/devkitapi:{build}
     docker push matsskoglund/devkitapi:latest
