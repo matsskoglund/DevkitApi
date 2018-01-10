@@ -13,7 +13,6 @@ deploy_script:
 
     docker push matsskoglund/devkitapi:latest
 
-    docker tag matsskoglund/devkitapi:%APPVEYOR_BUILD_ID%
+    docker tag matsskoglund/devkitapi:latest matsskoglund/devkitapi:%APPVEYOR_BUILD_ID%
 
-    docker push matsskoglund/devkitapi:latest
-    
+    docker push matsskoglund/devkitapi:%APPVEYOR_BUILD_ID%
