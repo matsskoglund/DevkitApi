@@ -6,9 +6,9 @@ environment:
   DOCKER_PASS:
     secure: /ghqbCXBo5yebZkklH+X9w==
 build_script:
-- cmd: docker build -t matsskoglund/devkitapi .
+- cmd: docker build -t matsskoglund/devkitapi:latest .
 deploy_script:
 - cmd: >-
     docker login -u=%DOCKER_USER% -p=%DOCKER_PASS%
 
-    docker push matsskoglund/devkitapi
+    docker push matsskoglund/devkitapi:latest
