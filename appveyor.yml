@@ -11,6 +11,4 @@ deploy_script:
 - cmd: >-
     docker login -u=%DOCKER_USER% -p=%DOCKER_PASS%
 
-    docker push matsskoglund/devkitapi:1
-    
-    docker push matsskoglund/devkitapi:latest
+    docker push matsskoglund/devkitapi
