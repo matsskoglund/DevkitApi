@@ -1,0 +1,23 @@
+INSERT INTO `mskvb0db`.`Categories` (`CategoryID`, `Name`) VALUES ('1', 'VCS');
+INSERT INTO `mskvb0db`.`Categories` (`CategoryID`, `Name`) VALUES ('2', 'CI/CD');
+INSERT INTO `mskvb0db`.`Categories` (`CategoryID`, `Name`) VALUES ('3', 'Editor');
+
+INSERT INTO `mskvb0db`.`Devkit` (`DevkitID`, `Description`, `Email`, `Name`) VALUES ('1', '.NET Core kit', 'mskvbo', '.NET');
+INSERT INTO `mskvb0db`.`Devkit` (`DevkitID`, `Description`, `Email`, `Name`) VALUES ('2', 'Java kit', 'mskvbo', 'Java');
+
+INSERT INTO `mskvb0db`.`Tools` (`ToolId`, `Aquire`, `CategoryId`, `Description`, `Name`, `URLRef`) VALUES ('1', 'https://www.github.com', '1', 'Free and open source. Integrated Git, debugging and extensions', 'Github', 'https://www.github.com');
+INSERT INTO `mskvb0db`.`Tools` (`ToolId`, `Aquire`, `CategoryId`, `Description`, `Name`, `URLRef`) VALUES ('2', 'https://code.visualstudio.com/Download', '3', 'Free and open source. Integrated Git, debugging and extensions', 'Visual Studio Code', 'https://code.visualstudio.com');
+INSERT INTO `mskvb0db`.`Tools` (`ToolId`, `Aquire`, `CategoryId`, `Description`, `Name`, `URLRef`) VALUES ('3', 'https://www.visualstudio.com/downloads/', '3', 'Best-in-class tools for any developer', 'Visual Studio', 'https://www.visualstudio.com/');
+
+INSERT INTO  `mskvb0db`.`DevkitTools` (`DevkitToolsID`,`DevkitID`, `ToolID`) VALUES ('1','1','1');
+INSERT INTO  `mskvb0db`.`DevkitTools` (`DevkitToolsID`,`DevkitID`, `ToolID`) VALUES ('2','1','2');
+
+INSERT INTO  `mskvb0db`.`DevkitTools` (`DevkitToolsID`,`DevkitID`, `ToolID`) VALUES ('3','2','1');
+INSERT INTO  `mskvb0db`.`DevkitTools` (`DevkitToolsID`,`DevkitID`, `ToolID`) VALUES ('4','2','3');
+
+CREATE TABLE `__EFMigrationsHistory` (
+	`MigrationId` VARCHAR(150) NOT NULL,
+	`ProductVersion` VARCHAR(32) NOT NULL,
+	PRIMARY KEY (`MigrationId`)
+)
+COLLATE='latin1_swedish_ci' ENGINE=InnoDB;
