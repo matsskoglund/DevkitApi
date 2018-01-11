@@ -17,7 +17,6 @@ namespace DevkitApi.Services
 
         public DevkitContext(DbContextOptions<DevkitContext> options) : base(options)
         {
-      
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
