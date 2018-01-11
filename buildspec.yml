@@ -1,0 +1,18 @@
+version: 0.2
+
+env:
+  parameter-store:
+    docker_user: docker_user
+    docker_pass: docker_pass
+            
+phases:
+  build:
+    commands:
+      - echo Build started on `date``
+      - echo Building the Docker image
+      - docker build -t matsskoglund/devkitapi:latest .
+      - command
+  post_build:
+    commands:
+      - docker login -u=$docker_user -p=$docker_pass
+      - docker push matsskoglund/devkitapi:latest
