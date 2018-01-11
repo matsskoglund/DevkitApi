@@ -16,3 +16,8 @@ phases:
     commands:
       - docker login -u=$docker_user -p=$docker_pass
       - docker push matsskoglund/devkitapi:latest
+artifacts:
+  files:
+    - imagedefinitions.json    
+  discard-paths: yes
+  base-directory: location/

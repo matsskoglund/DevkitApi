@@ -39,31 +39,15 @@ namespace DevkitApi.Controllers
         [HttpGet("{id}")]
         public  async Task<IActionResult>  GetDevkit([FromRoute] int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-             }
+           
              if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            return Ok(_devkitService.FindById(id));
+            return  Ok(_devkitService.FindById(id));
         }
         
-        [HttpGet]
-        [Route("Details/{id}")]
-        public  async Task<IActionResult>  GetToolsForDevkit([FromRoute] int id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-             }
-             if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            return Ok(_devkitService.GetToolsForDevkit(id));
-        }
+        
         
 
         // PUT: api/Devkits/5
