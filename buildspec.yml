@@ -8,7 +8,7 @@ env:
 phases:
   build:
     commands:
-      - echo Build started on `date``
+      - echo Build started on `date`
       - echo Building the Docker image
       - docker build -t matsskoglund/devkitapi:latest .
       - command
