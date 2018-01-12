@@ -1,6 +1,6 @@
 [
   {
-    "name": " devkitapi",
+    "name": "devkitapi",
     "imageUri": "matsskoglund/devkitapi:latest"
   }
 ]
