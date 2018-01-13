@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DevkitApi.Model;
 using DevkitApi.Services;
+using Microsoft.AspNetCore.Cors;
 
 namespace DevkitApi.Controllers
 {
     [Produces("application/json")]
     [Route("api/Tools")]
+    [EnableCors("AllowAll")]
     public class ToolController : Controller
     {
         private readonly DevkitContext _context;

@@ -48,17 +48,25 @@ namespace DevkitApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //_testSecret = Configuration["DefaultConnection"];            
+           services.AddCors(
+        options => options.AddPolicy(
+            "AllowAll", p => p.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials()
+            )
+        );        
 
-            //services.AddDbContext<DevkitContext>(options => options.Use
-            // options.UseSqlite("Data Source=devkit.db"));
 
             services.AddMvc().AddJsonOptions(options => {
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;        
             });
 
-            services.AddDbContext<DevkitContext>(options => options.UseMySQL(Configuration["DefaultConnection"]));
+            services.AddDbContext<DevkitContext>(options =>options.UseSqlite("Data Source=devkit.db"));
+
+            // select database
+            //services.AddDbContext<DevkitContext>(options => options.UseMySQL(Configuration["DefaultConnection"]));
             services.AddTransient<IDevkitService, DevkitService>();
         }
 
@@ -67,7 +75,7 @@ namespace DevkitApi
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-            
+            app.UseCors("AllowAll");
             app.UseMvc();
         }
     }

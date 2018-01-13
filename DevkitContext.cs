@@ -32,9 +32,11 @@ namespace DevkitApi.Services
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {           
-            var connString = Startup.GetConnectionString();            
-            optionsBuilder.UseMySQL(connString);
-            
+            var connString = Startup.GetConnectionString();
+            // Select database
+            //optionsBuilder.UseMySQL(connString);
+            optionsBuilder.UseSqlite("Data Source=devkit.db");
+
         }
     }
 }

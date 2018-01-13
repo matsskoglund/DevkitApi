@@ -10,9 +10,10 @@ using System;
 namespace DevkitApi.Migrations
 {
     [DbContext(typeof(DevkitContext))]
-    partial class DevkitContextModelSnapshot : ModelSnapshot
+    [Migration("20180113154035_SqlIte")]
+    partial class SqlIte
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
