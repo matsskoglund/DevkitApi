@@ -18,18 +18,6 @@ namespace DevkitApi.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125");
 
-            modelBuilder.Entity("DevkitApi.Model.Category", b =>
-                {
-                    b.Property<int>("CategoryID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("CategoryID");
-
-                    b.ToTable("Categories");
-                });
-
             modelBuilder.Entity("DevkitApi.Model.Devkit", b =>
                 {
                     b.Property<int>("DevkitID")
@@ -55,6 +43,8 @@ namespace DevkitApi.Migrations
 
                     b.Property<int>("ToolId");
 
+                    b.Property<int>("ToolType");
+
                     b.HasKey("DevkitToolsID");
 
                     b.HasIndex("DevkitID");
@@ -71,8 +61,6 @@ namespace DevkitApi.Migrations
 
                     b.Property<string>("Aquire");
 
-                    b.Property<int>("CategoryID");
-
                     b.Property<string>("Description");
 
                     b.Property<string>("Name");
@@ -80,8 +68,6 @@ namespace DevkitApi.Migrations
                     b.Property<string>("URLRef");
 
                     b.HasKey("ToolID");
-
-                    b.HasIndex("CategoryID");
 
                     b.ToTable("Tools");
                 });
@@ -96,14 +82,6 @@ namespace DevkitApi.Migrations
                     b.HasOne("DevkitApi.Model.Tool", "Tool")
                         .WithMany("DevkitTools")
                         .HasForeignKey("ToolId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("DevkitApi.Model.Tool", b =>
-                {
-                    b.HasOne("DevkitApi.Model.Category")
-                        .WithMany("Tools")
-                        .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

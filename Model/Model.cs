@@ -9,13 +9,13 @@ using System.ComponentModel.DataAnnotations;
 namespace DevkitApi.Model
 {
     
-    public class Category
+   /* public class Category
     {
         public int CategoryID { get; set; }
         public string Name { get; set; }
         public ICollection<Tool> Tools { get; set; }
     }
-    
+    */
     public class Tool
     {
         public int ToolID { get; set; }
@@ -24,7 +24,7 @@ namespace DevkitApi.Model
         public string Description { get; set; }
         public string Aquire { get; set; }
 
-        public int CategoryID { get; set; }       
+       // public int CategoryID { get; set; }       
         public ICollection<DevkitTools> DevkitTools { get; set; }
     }
 
@@ -47,6 +47,7 @@ namespace DevkitApi.Model
         public int DevkitID { get; set; }
         public int ToolId { get; set; }
 
+        public int ToolType { get; set; }
         public Devkit Devkit { get; set; }      
         public Tool Tool {get; set; }
     }

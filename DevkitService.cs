@@ -21,16 +21,20 @@ namespace DevkitApi.Services
 
     public Devkit FindById (int id)
     {
-        //var devkit = _dkContext.Devkits.Where(i => i.DevkitID == id);
-        var devkit = _dkContext.Devkits.Include(s => s.DevkitTools).ThenInclude(t => t.Tool).AsNoTracking().SingleOrDefault(m => m.DevkitID == id);
-        return devkit;
+            var devkit = _dkContext.Devkits.Where(i => i.DevkitID == id)
+                .Include(m => m.DevkitTools)
+                .SingleOrDefault();
+            return devkit;
     }
-        
-    public IEnumerable<Tool> GetToolsForDevkit(int devkitID)
+
+        public IEnumerable<Tool> GetToolsForDevkit(int devkitID)
     {
             //   var tools = _dkContext.Tools.Include(s => s.DevkitTools).ThenInclude(t => t.Devkits).Where(m => m.DevkitID == devkitID).ToList();
-            //   return tools;
-            return null;
+            var devkit = _dkContext.Devkits.Where(i => i.DevkitID == devkitID).Include(d => d.DevkitTools);
+            var devkittools = devkit.SelectMany(z => z.DevkitTools);
+            var tools = devkittools.Select(d => d.Tool);
+
+            return tools;
     }
   }
 }

@@ -46,9 +46,20 @@ namespace DevkitApi.Controllers
             }
             return  Ok(_devkitService.FindById(id));
         }
-        
-        
-        
+
+
+        // GET: api/Devkits/5
+        [HttpGet("tools/{id}")]
+        [Route("tools/{id}")]
+        public async Task<IActionResult> GetToolsForKit([FromRoute] int id)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            return Ok(_devkitService.GetToolsForDevkit(id));
+        }
 
         // PUT: api/Devkits/5
         [HttpPut("{id}")]

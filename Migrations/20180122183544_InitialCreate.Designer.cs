@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using MySql.Data.EntityFrameworkCore.Storage.Internal;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 
 namespace DevkitApi.Migrations
 {
     [DbContext(typeof(DevkitContext))]
-    [Migration("20180110140247_InitialCreate")]
+    [Migration("20180122183544_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,18 +18,6 @@ namespace DevkitApi.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.1-rtm-125");
-
-            modelBuilder.Entity("DevkitApi.Model.Category", b =>
-                {
-                    b.Property<int>("CategoryID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("CategoryID");
-
-                    b.ToTable("Categories");
-                });
 
             modelBuilder.Entity("DevkitApi.Model.Devkit", b =>
                 {
@@ -56,6 +44,8 @@ namespace DevkitApi.Migrations
 
                     b.Property<int>("ToolId");
 
+                    b.Property<int>("ToolType");
+
                     b.HasKey("DevkitToolsID");
 
                     b.HasIndex("DevkitID");
@@ -72,8 +62,6 @@ namespace DevkitApi.Migrations
 
                     b.Property<string>("Aquire");
 
-                    b.Property<int>("CategoryID");
-
                     b.Property<string>("Description");
 
                     b.Property<string>("Name");
@@ -81,8 +69,6 @@ namespace DevkitApi.Migrations
                     b.Property<string>("URLRef");
 
                     b.HasKey("ToolID");
-
-                    b.HasIndex("CategoryID");
 
                     b.ToTable("Tools");
                 });
@@ -97,14 +83,6 @@ namespace DevkitApi.Migrations
                     b.HasOne("DevkitApi.Model.Tool", "Tool")
                         .WithMany("DevkitTools")
                         .HasForeignKey("ToolId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("DevkitApi.Model.Tool", b =>
-                {
-                    b.HasOne("DevkitApi.Model.Category")
-                        .WithMany("Tools")
-                        .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

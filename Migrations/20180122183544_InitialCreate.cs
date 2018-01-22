@@ -9,24 +9,11 @@ namespace DevkitApi.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Categories",
-                columns: table => new
-                {
-                    CategoryID = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:AutoIncrement", true),
-                    Name = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Categories", x => x.CategoryID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Devkit",
                 columns: table => new
                 {
                     DevkitID = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:AutoIncrement", true),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Description = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true)
@@ -41,9 +28,8 @@ namespace DevkitApi.Migrations
                 columns: table => new
                 {
                     ToolID = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:AutoIncrement", true),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Aquire = table.Column<string>(nullable: true),
-                    CategoryID = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     URLRef = table.Column<string>(nullable: true)
@@ -51,12 +37,6 @@ namespace DevkitApi.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tools", x => x.ToolID);
-                    table.ForeignKey(
-                        name: "FK_Tools_Categories_CategoryID",
-                        column: x => x.CategoryID,
-                        principalTable: "Categories",
-                        principalColumn: "CategoryID",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -64,9 +44,10 @@ namespace DevkitApi.Migrations
                 columns: table => new
                 {
                     DevkitToolsID = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:AutoIncrement", true),
+                        .Annotation("Sqlite:Autoincrement", true),
                     DevkitID = table.Column<int>(nullable: false),
-                    ToolId = table.Column<int>(nullable: false)
+                    ToolId = table.Column<int>(nullable: false),
+                    ToolType = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -94,11 +75,6 @@ namespace DevkitApi.Migrations
                 name: "IX_DevkitTools_ToolId",
                 table: "DevkitTools",
                 column: "ToolId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tools_CategoryID",
-                table: "Tools",
-                column: "CategoryID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -111,9 +87,6 @@ namespace DevkitApi.Migrations
 
             migrationBuilder.DropTable(
                 name: "Tools");
-
-            migrationBuilder.DropTable(
-                name: "Categories");
         }
     }
 }
