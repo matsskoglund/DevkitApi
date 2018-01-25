@@ -24,7 +24,8 @@ namespace DevkitApi.Model
         public string Description { get; set; }
         public string Aquire { get; set; }
 
-       // public int CategoryID { get; set; }       
+        public string AquireType { get; set; }
+        
         public ICollection<DevkitTools> DevkitTools { get; set; }
     }
 
@@ -35,7 +36,7 @@ namespace DevkitApi.Model
         public int DevkitID { get; set; }
 
         public string Name { get; set; }
-
+        public string ShortName { get; set; }
         public string Description { get; set; }
         public string Email { get; set; }
 
@@ -47,7 +48,7 @@ namespace DevkitApi.Model
         public int DevkitID { get; set; }
         public int ToolId { get; set; }
 
-        public int ToolType { get; set; }
+        public string ToolType { get; set; }
         public Devkit Devkit { get; set; }      
         public Tool Tool {get; set; }
     }

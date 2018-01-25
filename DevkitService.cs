@@ -22,7 +22,7 @@ namespace DevkitApi.Services
     public Devkit FindById (int id)
     {
             var devkit = _dkContext.Devkits.Where(i => i.DevkitID == id)
-                .Include(m => m.DevkitTools)
+           //     .Include(m => m.DevkitTools)
                 .SingleOrDefault();
             return devkit;
     }
