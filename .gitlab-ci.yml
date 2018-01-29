@@ -1,0 +1,6 @@
+image:microsoft/aspnetcore:2.0
+            
+job1:
+      - echo Build started on `date`
+      - echo Building the Docker image
+      - docker build -t matsskoglund/devkitapi:latest .
