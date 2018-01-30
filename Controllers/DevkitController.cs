@@ -111,6 +111,24 @@ namespace DevkitApi.Controllers
             return CreatedAtAction("GetDevkit", new { id = devkit.DevkitID }, devkit);
         }
 
+      // POST: api/Devkits/details
+       
+        [HttpPost("devkitstools")]
+        [Route("devkitstools")]
+        public async Task<IActionResult> PostDevkitTool([FromBody] DevkitTools devkittool)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            
+            _context.DevkitTools.Add(devkittool);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("PostDevkitTool", new { id = devkittool.DevkitToolsID }, devkittool);
+        }
+        
         // DELETE: api/Devkits/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDevkit([FromRoute] int id)
