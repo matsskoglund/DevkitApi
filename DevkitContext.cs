@@ -34,8 +34,9 @@ namespace DevkitApi.Services
         {           
             var connString = Startup.GetConnectionString();
             // Select database
-            //optionsBuilder.UseMySQL(connString);
-            optionsBuilder.UseSqlite("Data Source=devkit.db");
+            optionsBuilder.UseMySQL(connString);
+      
+            //optionsBuilder.UseSqlite("Data Source=devkit.db");
 
         }
     }

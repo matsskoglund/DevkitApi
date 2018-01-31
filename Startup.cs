@@ -25,11 +25,15 @@ namespace DevkitApi
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables().
-                AddUserSecrets<Startup>();
+                .AddEnvironmentVariables();
+
+                if (env.IsDevelopment())
+                {
+                    builder.AddUserSecrets<Startup>();
+                }
 
             Configuration = builder.Build();
-            ConnectionString  = Configuration["DefaultConnection"];
+            ConnectionString  = Configuration.GetConnectionString("DefaultConnection");
             
         }
 
@@ -39,7 +43,7 @@ namespace DevkitApi
                 .AddUserSecrets<Startup>();
 
             IConfigurationRoot Configuration = builder.Build();
-            ConnectionString = Configuration["DefaultConnection"];
+            ConnectionString = Configuration["TestConnectionString"];
             return ConnectionString;
         }
 
@@ -63,10 +67,10 @@ namespace DevkitApi
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;        
             });
 
-            services.AddDbContext<DevkitContext>(options =>options.UseSqlite("Data Source=devkit.db"));
+            //services.AddDbContext<DevkitContext>(options =>options.UseSqlite("Data Source=devkit.db"));
 
             // select database
-            //services.AddDbContext<DevkitContext>(options => options.UseMySQL(Configuration["DefaultConnection"]));
+            services.AddDbContext<DevkitContext>(options => options.UseMySQL(Configuration["DefaultConnection"]));
             services.AddTransient<IDevkitService, DevkitService>();
         }
 

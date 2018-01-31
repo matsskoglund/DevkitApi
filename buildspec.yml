@@ -4,8 +4,13 @@ env:
   parameter-store:
     docker_user: docker_user
     docker_pass: docker_pass
+    DefaultConnection: DefaultConnection
             
 phases:
+  install:
+    commands:
+      - echo Configuring DB endpoint
+      - sed -i "s/server=127.0.0.1;userid=mskvb0db;password=mypass;database=devkit;/$DefaultConnection/g" appsettings.json
   build:
     commands:
       - echo Build started on `date`
