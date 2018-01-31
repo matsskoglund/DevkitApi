@@ -21,6 +21,7 @@ namespace DevkitApi
             .UseContentRoot(Directory.GetCurrentDirectory())
             .UseIISIntegration()
             .UseStartup<Startup>()
+            .ConfigureLogging(f => f.AddConsole())
             .Build();
 
             using (var scope = host.Services.CreateScope())

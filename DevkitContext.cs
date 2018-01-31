@@ -17,6 +17,7 @@ namespace DevkitApi.Services
 
         public DevkitContext(DbContextOptions<DevkitContext> options) : base(options)
         {
+           
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -27,18 +28,21 @@ namespace DevkitApi.Services
             modelBuilder.Entity<DevkitTools>().ToTable("DevkitTools");
         }
 
-        public DevkitContext() { }
+        public DevkitContext() { 
+             
+        }
         
         
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+       /* protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {           
             var connString = Startup.GetConnectionString();
+            System.Console.WriteLine("OnConfiguring: " + connString);
             // Select database
             optionsBuilder.UseMySQL(connString);
       
             //optionsBuilder.UseSqlite("Data Source=devkit.db");
 
-        }
+        }*/
     }
 }
 

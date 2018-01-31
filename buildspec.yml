@@ -10,7 +10,7 @@ phases:
   install:
     commands:
       - echo Configuring DB endpoint
-      - sed -i "s/server=127.0.0.1;userid=mskvb0db;password=mypass;database=devkit;/$DefaultConnection/g" appsettings.json
+      - sed -i "s/server=127.0.0.1;userid=root;password=mypass;database=devkit;/$DefaultConnection/g" appsettings.json
   build:
     commands:
       - echo Build started on `date`

@@ -18,9 +18,11 @@ namespace DevkitApi
     public class Startup
     {
         public static string ConnectionString { get; private set; }
-
-        public Startup(IHostingEnvironment env)
+        private readonly ILogger<Startup> _logger;
+        //public Startup(IHostingEnvironment env)
+         public Startup(IHostingEnvironment env,ILogger<Startup> logger, IConfiguration configuration)
         {
+            _logger = logger;
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
@@ -31,10 +33,10 @@ namespace DevkitApi
                 {
                     builder.AddUserSecrets<Startup>();
                 }
-
+     
             Configuration = builder.Build();
             ConnectionString  = Configuration.GetConnectionString("DefaultConnection");
-            
+            System.Console.WriteLine("Startup: " + ConnectionString);
         }
 
         public static string GetConnectionString()
@@ -43,7 +45,8 @@ namespace DevkitApi
                 .AddUserSecrets<Startup>();
 
             IConfigurationRoot Configuration = builder.Build();
-            ConnectionString = Configuration["TestConnectionString"];
+            ConnectionString = Configuration.GetConnectionString("DefaultConnection");
+            System.Console.WriteLine("GetConnectionString: " + ConnectionString);
             return ConnectionString;
         }
 
@@ -52,6 +55,7 @@ namespace DevkitApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
            services.AddCors(
         options => options.AddPolicy(
             "AllowAll", p => p.AllowAnyOrigin()
@@ -68,9 +72,11 @@ namespace DevkitApi
             });
 
             //services.AddDbContext<DevkitContext>(options =>options.UseSqlite("Data Source=devkit.db"));
+            string ConnectionString = Configuration.GetConnectionString("DefaultConnection");
 
+            System.Console.WriteLine("Configure Services: " + ConnectionString);
             // select database
-            services.AddDbContext<DevkitContext>(options => options.UseMySQL(Configuration["DefaultConnection"]));
+            services.AddDbContext<DevkitContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
             services.AddTransient<IDevkitService, DevkitService>();
         }
 
