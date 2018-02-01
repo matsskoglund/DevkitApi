@@ -36,7 +36,7 @@ namespace DevkitApi
      
             Configuration = builder.Build();
             ConnectionString  = Configuration.GetConnectionString("DefaultConnection");
-            System.Console.WriteLine("Startup: " + ConnectionString);
+            _logger.LogInformation("ConnectionString: " + ConnectionString);
         }
 
         public static string GetConnectionString()
