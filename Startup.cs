@@ -19,23 +19,24 @@ namespace DevkitApi
     {
         public static string ConnectionString { get; private set; }
         private readonly ILogger<Startup> _logger;
-        //public Startup(IHostingEnvironment env)
-         public Startup(IHostingEnvironment env,ILogger<Startup> logger, IConfiguration configuration)
+        IHostingEnvironment _env;
+        public Startup(IHostingEnvironment env, ILogger<Startup> logger, IConfiguration configuration)
         {
             _logger = logger;
+            _env = env;
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
 
-                if (env.IsDevelopment())
-                {
-                    builder.AddUserSecrets<Startup>();
-                }
-     
+            if (env.IsDevelopment())
+            {
+                builder.AddUserSecrets<Startup>();
+            }
+
             Configuration = builder.Build();
-            ConnectionString  = Configuration.GetConnectionString("DefaultConnection");
+            ConnectionString = Configuration.GetConnectionString("DefaultConnection");
             _logger.LogInformation("ConnectionString: " + ConnectionString);
         }
 
@@ -55,28 +56,31 @@ namespace DevkitApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
-           services.AddCors(
-        options => options.AddPolicy(
-            "AllowAll", p => p.AllowAnyOrigin()
-                .AllowAnyHeader()
-                .AllowAnyMethod()
-                .AllowCredentials()
-            )
-        );        
+
+            services.AddCors(
+         options => options.AddPolicy(
+             "AllowAll", p => p.AllowAnyOrigin()
+                 .AllowAnyHeader()
+                 .AllowAnyMethod()
+                 .AllowCredentials()
+             )
+         );
 
 
-            services.AddMvc().AddJsonOptions(options => {
+            services.AddMvc().AddJsonOptions(options =>
+            {
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;        
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
 
-            //services.AddDbContext<DevkitContext>(options =>options.UseSqlite("Data Source=devkit.db"));
-            string ConnectionString = Configuration.GetConnectionString("DefaultConnection");
-
-            System.Console.WriteLine("Configure Services: " + ConnectionString);
-            // select database
-            services.AddDbContext<DevkitContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+            if (_env.IsDevelopment())
+            {
+                services.AddDbContext<DevkitContext>(options =>options.UseSqlite("Data Source=devkit.db"));
+            }
+            else
+            {
+                services.AddDbContext<DevkitContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+            }            
             services.AddTransient<IDevkitService, DevkitService>();
         }
 
