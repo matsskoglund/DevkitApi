@@ -73,7 +73,7 @@ namespace DevkitApi
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
 
-            if (_env.IsDevelopment())
+            if (_env.IsDevelopment() || _env.IsStaging())
             {
                 services.AddDbContext<DevkitContext>(options =>options.UseSqlite("Data Source=devkit.db"));
             }
