@@ -12,8 +12,8 @@ deploy_script:
 - cmd: >-
     docker login -u=%DOCKER_USER% -p=%DOCKER_PASS%
 
-    docker push matsskoglund/devkitapi:latest
+    //docker push matsskoglund/devkitapi:latest
 
     docker tag matsskoglund/devkitapi:latest matsskoglund/devkitapi:%APPVEYOR_BUILD_ID%
 
-    docker push matsskoglund/devkitapi:%APPVEYOR_BUILD_ID%
+    //docker push matsskoglund/devkitapi:%APPVEYOR_BUILD_ID%
