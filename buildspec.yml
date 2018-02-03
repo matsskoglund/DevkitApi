@@ -16,7 +16,6 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image
       - docker build -t matsskoglund/devkitapi:latest .
-      - command
   post_build:
     commands:
       - docker login -u=$docker_user -p=$docker_pass

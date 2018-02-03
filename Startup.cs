@@ -75,6 +75,8 @@ namespace DevkitApi
 
             if (_env.IsDevelopment() || _env.IsStaging())
             {
+                
+                //services.AddDbContext<DevkitContext>(options => options.UseInMemoryDatabase(databaseName: "database"));
                 services.AddDbContext<DevkitContext>(options =>options.UseSqlite("Data Source=devkit.db"));
             }
             else

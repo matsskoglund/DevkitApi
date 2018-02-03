@@ -27,14 +27,21 @@ namespace DevkitApi.Services
             return devkit;
     }
 
-        public IEnumerable<Tool> GetToolsForDevkit(int devkitID)
-    {
-            //   var tools = _dkContext.Tools.Include(s => s.DevkitTools).ThenInclude(t => t.Devkits).Where(m => m.DevkitID == devkitID).ToList();
+    public IEnumerable<Tool> GetToolsForDevkit(int devkitID)
+    {            
             var devkit = _dkContext.Devkits.Where(i => i.DevkitID == devkitID).Include(d => d.DevkitTools);
             var devkittools = devkit.SelectMany(z => z.DevkitTools);
             var tools = devkittools.Select(d => d.Tool);
 
             return tools;
     }
-  }
+        public IEnumerable<DevkitTools> GetDevkitToolsForDevkit(int devkitID)
+        {
+            var devkit = _dkContext.Devkits.Where(i => i.DevkitID == devkitID).Include(d => d.DevkitTools);
+            var devkittools = devkit.SelectMany(z => z.DevkitTools);            
+
+            return devkittools;
+        }
+
+    }
 }

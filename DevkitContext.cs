@@ -33,14 +33,14 @@ namespace DevkitApi.Services
         }
         
         
-       /* protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+      /*  protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {           
             var connString = Startup.GetConnectionString();
             System.Console.WriteLine("OnConfiguring: " + connString);
             // Select database
-            optionsBuilder.UseMySQL(connString);
+            //optionsBuilder.UseMySQL(connString);
       
-            //optionsBuilder.UseSqlite("Data Source=devkit.db");
+            optionsBuilder.UseSqlite("Data Source=devkit.db");
 
         }*/
     }

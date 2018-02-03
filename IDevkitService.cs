@@ -8,5 +8,6 @@ namespace DevkitApi.Services
     // Search and Get
     Devkit FindById (int id);
     IEnumerable<Tool> GetToolsForDevkit(int devkitID);
+        IEnumerable<DevkitTools> GetDevkitToolsForDevkit(int devkitID);
   }
 }

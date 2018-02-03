@@ -8,13 +8,14 @@ using Microsoft.EntityFrameworkCore;
 using DevkitApi.Model;
 using DevkitApi.Services;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Cors;
 
 namespace DevkitApi.Controllers
 {
 
     
     [Produces("application/json")]
-    [Route("api/Devkits")]
+    [Route("api/Devkits")]    
     public class DevkitController : Controller
     {
         private readonly DevkitContext _context;
@@ -96,6 +97,37 @@ namespace DevkitApi.Controllers
             return NoContent();
         }
 
+        // PUT: api/Devkits/5
+        [HttpPut("tools/{id}")]
+        [Route("tools/{id}")]
+        public async Task<IActionResult> PutDevkitTools([FromRoute] int id, [FromBody]  DevkitTools devkittool)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _context.Entry(devkittool).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!DevkitExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
         // POST: api/Devkits
         [HttpPost]
         public async Task<IActionResult> PostDevkit([FromBody] Devkit devkit)
@@ -113,8 +145,8 @@ namespace DevkitApi.Controllers
 
       // POST: api/Devkits/details
        
-        [HttpPost("devkitstools")]
-        [Route("devkitstools")]
+        [HttpPost("tools")]
+        [Route("tools")]
         public async Task<IActionResult> PostDevkitTool([FromBody] DevkitTools devkittool)
         {
             if (!ModelState.IsValid)
@@ -126,10 +158,12 @@ namespace DevkitApi.Controllers
             _context.DevkitTools.Add(devkittool);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("PostDevkitTool", new { id = devkittool.DevkitToolsID }, devkittool);
+            //return CreatedAtAction("PostDevkitTool", new { id = devkittool.DevkitToolsID }, devkittool);
+            return Ok();
         }
         
         // DELETE: api/Devkits/5
+        // Delete the Devkit
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDevkit([FromRoute] int id)
         {
@@ -149,6 +183,33 @@ namespace DevkitApi.Controllers
 
             return Ok(devkit);
         }
+
+        // DELETE: api/tools/5
+        // Delete the tools from the devkit
+        [HttpDelete("tools/{id}")]
+        [Route("tools/{id}")]
+        public async Task<IActionResult> DeleteDevkitTools([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var devkit = await _context.Devkits.SingleOrDefaultAsync(m => m.DevkitID == id);
+            if (devkit == null)
+            {
+                return NotFound();
+            }
+
+
+            IEnumerable<DevkitTools> allTools = _devkitService.GetDevkitToolsForDevkit(id);
+            _context.DevkitTools.RemoveRange(allTools);
+            //_context.Devkits.Remove(devkit);
+            await _context.SaveChangesAsync();
+            allTools = _context.DevkitTools;
+            return Ok(devkit);
+        }
+
 
         private bool DevkitExists(int id)
         {
