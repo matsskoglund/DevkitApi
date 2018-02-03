@@ -2,7 +2,7 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/1al4h956xqs27ta6/branch/master?svg=true)](https://ci.appveyor.com/project/matsskoglund58956/devkitapi/branch/master)
 
-[![CodeBuild status](https://codebuild.eu-west-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoib1RGL0E0Y0Nib2taRElyL1ZUTmNWaGVKRENFWkxSQ0x6Y1J3WG0wQys4REpUcmw4OHZ6SWRxbzlOWGxmMmgzVDdWSFo5T1ZzZHlDOXVCOHI2aVBKTWpBPSIsIml2UGFyYW1ldGVyU3BlYyI6Imcrb0FaV1ZiWThSeWdNZ0EiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
+![CodeBuild status](https://codebuild.eu-west-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoib1RGL0E0Y0Nib2taRElyL1ZUTmNWaGVKRENFWkxSQ0x6Y1J3WG0wQys4REpUcmw4OHZ6SWRxbzlOWGxmMmgzVDdWSFo5T1ZzZHlDOXVCOHI2aVBKTWpBPSIsIml2UGFyYW1ldGVyU3BlYyI6Imcrb0FaV1ZiWThSeWdNZ0EiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
 
 [![Docker status](https://dockerbuildbadges.quelltext.eu/status.svg?organization=matsskoglund&repository=devkitapiauto)](https://dockerbuildbadges.quelltext.eu/status.svg?organization=matsskoglund&repository=devkitapi)
 
