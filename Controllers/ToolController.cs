@@ -86,6 +86,7 @@ namespace DevkitApi.Controllers
 
         // POST: api/Tools
         [HttpPost]
+        [EnableCors("AllowAll")]
         public async Task<IActionResult> PostTool([FromBody] Tool tool)
         {
             if (!ModelState.IsValid)
