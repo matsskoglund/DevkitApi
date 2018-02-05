@@ -27,7 +27,7 @@ namespace DevkitApi.Controllers
         [HttpGet]
         public IEnumerable<Tool> GetTools()
         {
-            return _context.Tools;
+            return _context.Tools.OrderBy(t => t.Name);
         }
 
         // GET: api/Tools/5

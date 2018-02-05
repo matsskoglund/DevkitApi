@@ -33,7 +33,7 @@ namespace DevkitApi.Services
             var devkittools = devkit.SelectMany(z => z.DevkitTools);
             var tools = devkittools.Select(d => d.Tool);
 
-            return tools;
+            return tools.OrderBy(tool => tool.Name);
     }
         public IEnumerable<DevkitTools> GetDevkitToolsForDevkit(int devkitID)
         {
