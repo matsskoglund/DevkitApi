@@ -13,6 +13,7 @@ using DevkitApi.Services;
 using Newtonsoft.Json.Serialization;
 using Microsoft.AspNetCore.Http;
 using Swashbuckle.AspNetCore.Swagger;
+using System.IO;
 
 namespace DevkitApi
 {
@@ -88,8 +89,19 @@ namespace DevkitApi
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "DevkitAPI", Version = "v1" });
+                c.SwaggerDoc("v1", new Info
+                    {
+                        Title = "DevkitAPI",
+                        Version = "v1",
+                        Description = "The API for Devkits",
+                        Contact = new Contact { Name = "Mats Skoglund", Email = "mats.skoglund@scania.com", Url = "https://devtools.scania.com"}
+                });
+                var basePath = AppContext.BaseDirectory;
+                var xmlPath = Path.Combine(basePath, "DevkitApi.xml");
+                c.IncludeXmlComments(xmlPath);
             });
+
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

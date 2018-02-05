@@ -3,8 +3,10 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <UserSecretsId>6d56c8a8-8b44-472a-b923-2e4bf83fa814</UserSecretsId>
-    <ApplicationInsightsResourceId>/subscriptions/7b817aa6-0391-4ff1-ac70-20e877b1263a/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/DevkitApi</ApplicationInsightsResourceId>
-    <ApplicationInsightsAnnotationResourceId>/subscriptions/7b817aa6-0391-4ff1-ac70-20e877b1263a/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/DevkitApi</ApplicationInsightsAnnotationResourceId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp2.0\DevkitApi.xml</DocumentationFile>
+    <NoWarn>1701;1702;1705;1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

@@ -13,9 +13,9 @@ using Microsoft.AspNetCore.Cors;
 namespace DevkitApi.Controllers
 {
 
-    
+
     [Produces("application/json")]
-    [Route("api/Devkits")]    
+    [Route("api/Devkits")]        
     public class DevkitController : Controller
     {
         private readonly DevkitContext _context;
@@ -29,8 +29,18 @@ namespace DevkitApi.Controllers
             _logger = logger;
         }
 
-        // GET: api/Devkits
+        /// <summary>
+        /// Returns all Devkits 
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///  GET /api/Devkits        
+        /// </remarks>
+        /// <returns>Returns all Devkits</returns>
+        /// <response code="200">Returns all Devkits</response>
         [HttpGet("")]
+        [ProducesResponseType(typeof(Devkit), 200)]
         public IEnumerable<Devkit> GetDevkits()
         {
             return _context.Devkits;
@@ -38,7 +48,7 @@ namespace DevkitApi.Controllers
 
         // GET: api/Devkits/5
         [HttpGet("{id}")]
-        public  async Task<IActionResult>  GetDevkit([FromRoute] int id)
+        public  IActionResult  GetDevkit([FromRoute] int id)
         {
            
              if (!ModelState.IsValid)
@@ -52,7 +62,7 @@ namespace DevkitApi.Controllers
         // GET: api/Devkits/5
         [HttpGet("tools/{id}")]
        // [Route("tools/{id}")]
-        public async Task<IActionResult> GetToolsForKit([FromRoute] int id)
+        public IActionResult GetToolsForKit([FromRoute] int id)
         {
 
             if (!ModelState.IsValid)
