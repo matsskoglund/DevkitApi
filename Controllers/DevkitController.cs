@@ -30,7 +30,7 @@ namespace DevkitApi.Controllers
         }
 
         // GET: api/Devkits
-        [HttpGet]
+        [HttpGet("")]
         public IEnumerable<Devkit> GetDevkits()
         {
             return _context.Devkits;
@@ -51,7 +51,7 @@ namespace DevkitApi.Controllers
 
         // GET: api/Devkits/5
         [HttpGet("tools/{id}")]
-        [Route("tools/{id}")]
+       // [Route("tools/{id}")]
         public async Task<IActionResult> GetToolsForKit([FromRoute] int id)
         {
 
@@ -99,7 +99,7 @@ namespace DevkitApi.Controllers
 
         // PUT: api/Devkits/5
         [HttpPut("tools/{id}")]
-        [Route("tools/{id}")]
+       // [Route("tools/{id}")]
         public async Task<IActionResult> PutDevkitTools([FromRoute] int id, [FromBody]  DevkitTools devkittool)
         {
             if (!ModelState.IsValid)
@@ -146,7 +146,7 @@ namespace DevkitApi.Controllers
       // POST: api/Devkits/details
        
         [HttpPost("tools")]
-        [Route("tools")]
+        //[Route("tools")]
         public async Task<IActionResult> PostDevkitTool([FromBody] DevkitTools devkittool)
         {
             if (!ModelState.IsValid)
@@ -187,7 +187,7 @@ namespace DevkitApi.Controllers
         // DELETE: api/tools/5
         // Delete the tools from the devkit
         [HttpDelete("tools/{id}")]
-        [Route("tools/{id}")]
+       // [Route("tools/{id}")]
         public async Task<IActionResult> DeleteDevkitTools([FromRoute] int id)
         {
             if (!ModelState.IsValid)

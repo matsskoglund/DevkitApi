@@ -24,7 +24,7 @@ namespace DevkitApi.Controllers
         }
 
         // GET: api/DevkitTools
-        [HttpGet]
+        [HttpGet("")]
         public IEnumerable<DevkitTools> GetDevkitTools()
         {
             return _context.DevkitTools;

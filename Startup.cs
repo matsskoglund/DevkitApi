@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using DevkitApi.Services;
 using Newtonsoft.Json.Serialization;
 using Microsoft.AspNetCore.Http;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace DevkitApi
 {
@@ -58,11 +59,11 @@ namespace DevkitApi
         {
 
             services.AddCors(
-         options => options.AddPolicy(
-             "AllowAll", p => p.AllowAnyOrigin()
-                 .AllowAnyHeader()
-                 .AllowAnyMethod()
-                 .AllowCredentials()
+                options => options.AddPolicy(
+                    "AllowAll", p => p.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials()
              )
          );
 
@@ -84,6 +85,11 @@ namespace DevkitApi
                 services.AddDbContext<DevkitContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
             }            
             services.AddTransient<IDevkitService, DevkitService>();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "DevkitAPI", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -91,8 +97,11 @@ namespace DevkitApi
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DevkitApi V1"));
             app.UseCors("AllowAll");
             app.UseMvc();
+            
         }
     }
 }
