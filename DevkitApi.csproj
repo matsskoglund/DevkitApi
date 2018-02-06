@@ -38,6 +38,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="2.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="1.1.0" />
+    <PackageReference Include="xunit" Version="2.3.1" />
   </ItemGroup>
   <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish">
     <ItemGroup>
