@@ -17,3 +17,8 @@ Will create and use internal sqlite db. I use Staging mode for testing for the m
 
 `docker run -e ASPNETCORE_ENVIRONMENT=Staging -it -p 5000:5000 matsskoglund/devkitapi:latest`
 
+## Run the Postman tests
+`cd test`
+`newman run DevkitApi.Test.postman_collection.json`
+
+

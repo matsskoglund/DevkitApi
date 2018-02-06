@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using System.ComponentModel.DataAnnotations;
 using DevkitApi.Model;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DevkitApi.Services
 {
@@ -43,5 +44,14 @@ namespace DevkitApi.Services
             return devkittools;
         }
 
+        public IEnumerable<Devkit> GetDevkits()
+        {
+            return _dkContext.Devkits;
+        }
+
+        public Task<Devkit> UpdateAsync(Devkit kit)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

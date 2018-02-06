@@ -1,13 +1,26 @@
 {
 	"info": {
 		"name": "DevkitApi.Test",
-		"_postman_id": "36cc2ff9-dca3-beb6-4709-4f1846609e51",
-		"description": "",
+		"_postman_id": "35b3167f-c78f-6304-c65e-033143f9332e",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "http://localhost:5000/api/Devkits",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "582926d3-45ea-414c-878e-a094d948ba0a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -23,8 +36,7 @@
 						"api",
 						"Devkits"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -47,7 +59,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:5000/api/Devkits/1",
 					"protocol": "http",
@@ -61,7 +76,7 @@
 						"1"
 					]
 				},
-				"description": "get one Devkit"
+				"description": "Get one Devkit"
 			},
 			"response": []
 		},
@@ -84,7 +99,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:5000/api/Devkits/111",
 					"protocol": "http",
@@ -99,6 +117,47 @@
 					]
 				},
 				"description": "Get one Devkit that does not exist"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/api/Devkits/tools/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a9c45f73-9bad-4b98-91c4-34d0d151b7f0",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/Devkits/tools/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Devkits",
+						"tools",
+						"1"
+					]
+				},
+				"description": "Get the tools for one Devkit"
 			},
 			"response": []
 		}

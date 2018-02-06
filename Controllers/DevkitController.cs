@@ -15,14 +15,16 @@ namespace DevkitApi.Controllers
 
 
     [Produces("application/json")]
-    [Route("api/Devkits")]        
-    public class DevkitController : Controller
+    //[Route("v1/[controller]")]
+    //[Route("api/Devkits")]        
+    [Route("api/[controller]")]
+    public class DevkitsController : Controller
     {
         private readonly DevkitContext _context;
         private IDevkitService _devkitService;
         private readonly ILogger _logger;
 
-        public DevkitController(DevkitContext context, IDevkitService devkitService, ILogger<DevkitController> logger)
+        public DevkitsController(DevkitContext context, IDevkitService devkitService, ILogger<DevkitsController> logger)
         {
             _context = context;
             _devkitService = devkitService;
@@ -43,7 +45,8 @@ namespace DevkitApi.Controllers
         [ProducesResponseType(typeof(Devkit), 200)]
         public IEnumerable<Devkit> GetDevkits()
         {
-            return _context.Devkits;
+            return _devkitService.GetDevkits();
+           
         }
 
         /// <summary>
@@ -54,9 +57,12 @@ namespace DevkitApi.Controllers
         /// 
         ///  GET /api/Devkits/5        
         /// </remarks>
-        /// <returns>Returns a Devkit with the specificed id</returns>
+        /// <returns>Returns a Devkit with the specificed id if it exists. If it does not exist it returns empty. If id is not an int it returns Bad request.</returns>
         /// <response code="200">Returns a Devkit with the specificed id</response>
+        /// <response code="400">Returns bad request if the id is not an int.</response>
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(String), 200)]
+        [ProducesResponseType(typeof(String), 400)]
         public  IActionResult  GetDevkit([FromRoute] int id)
         {
            
@@ -68,9 +74,20 @@ namespace DevkitApi.Controllers
         }
 
 
-        // GET: api/Devkits/5
+        /// <summary>
+        /// Returns the tools for a Devkit with the specificed id 
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///  GET /api/Devkits/tools/5        
+        /// </remarks>
+        /// <returns>Returns the tools for a Devkit with the specificed id if it exist. If it does not exist it returns empty. If id is not an int it returns Bad request.</returns>
+        /// <response code="200">Returns a the tools for the Devkit with the specificed id</response>
+        /// <response code="400">Returns bad request if the id is not an int.</response>        
         [HttpGet("tools/{id}")]
-       // [Route("tools/{id}")]
+        [ProducesResponseType(typeof(String), 200)]
+        [ProducesResponseType(typeof(String), 400)]
         public IActionResult GetToolsForKit([FromRoute] int id)
         {
 
@@ -81,8 +98,22 @@ namespace DevkitApi.Controllers
             return Ok(_devkitService.GetToolsForDevkit(id));
         }
 
-        // PUT: api/Devkits/5
+        /// <summary>
+        /// Updates the Devkit with the specificed id.
+        /// Returns no content
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///  PUT /api/Devkits/1
+        /// </remarks>
+        /// <returns>Returns empty if the Devkit with the specificed id exist and is updated. If it does not exist it returns Bad request response. 
+        /// If id is not an int or if the id for the Devkit is different from the id it returns Bad request.</returns>
+        /// <response code="200">Returns a the tools for the Devkit with the specificed id</response>
+        /// <response code="400">Returns bad request if the id is not an int or if the id does not match the Devkit id in the body.</response>
         [HttpPut("{id}")]
+        [ProducesResponseType(typeof(String), 200)]
+        [ProducesResponseType(typeof(String), 400)]
         public async Task<IActionResult> PutDevkit([FromRoute] int id, [FromBody] Devkit devkit)
         {
             if (!ModelState.IsValid)
