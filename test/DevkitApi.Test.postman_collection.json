@@ -1,0 +1,106 @@
+{
+	"info": {
+		"name": "DevkitApi.Test",
+		"_postman_id": "36cc2ff9-dca3-beb6-4709-4f1846609e51",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:5000/api/Devkits",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:5000/api/Devkits",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Devkits"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/api/Devkits/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d9b7037f-c196-48eb-a70e-8531f9feb653",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:5000/api/Devkits/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Devkits",
+						"1"
+					]
+				},
+				"description": "get one Devkit"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5000/api/Devkits/111",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a9c45f73-9bad-4b98-91c4-34d0d151b7f0",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:5000/api/Devkits/111",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Devkits",
+						"111"
+					]
+				},
+				"description": "Get one Devkit that does not exist"
+			},
+			"response": []
+		}
+	]
+}

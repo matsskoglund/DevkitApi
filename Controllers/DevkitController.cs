@@ -46,7 +46,16 @@ namespace DevkitApi.Controllers
             return _context.Devkits;
         }
 
-        // GET: api/Devkits/5
+        /// <summary>
+        /// Returns a Devkit with the specificed id 
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///  GET /api/Devkits/5        
+        /// </remarks>
+        /// <returns>Returns a Devkit with the specificed id</returns>
+        /// <response code="200">Returns a Devkit with the specificed id</response>
         [HttpGet("{id}")]
         public  IActionResult  GetDevkit([FromRoute] int id)
         {
