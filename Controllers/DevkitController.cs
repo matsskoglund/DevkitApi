@@ -74,29 +74,6 @@ namespace DevkitApi.Controllers
         }
 
 
-        /// <summary>
-        /// Returns the tools for a Devkit with the specificed id 
-        /// </summary>
-        /// <remarks>
-        /// Sample request:
-        /// 
-        ///  GET /api/Devkits/tools/5        
-        /// </remarks>
-        /// <returns>Returns the tools for a Devkit with the specificed id if it exist. If it does not exist it returns empty. If id is not an int it returns Bad request.</returns>
-        /// <response code="200">Returns a the tools for the Devkit with the specificed id</response>
-        /// <response code="400">Returns bad request if the id is not an int.</response>        
-        [HttpGet("tools/{id}")]
-        [ProducesResponseType(typeof(String), 200)]
-        [ProducesResponseType(typeof(String), 400)]
-        public IActionResult GetToolsForKit([FromRoute] int id)
-        {
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            return Ok(_devkitService.GetToolsForDevkit(id));
-        }
 
         /// <summary>
         /// Updates the Devkit with the specificed id.
@@ -147,38 +124,20 @@ namespace DevkitApi.Controllers
             return NoContent();
         }
 
-        // PUT: api/Devkits/5
-        [HttpPut("tools/{id}")]
-       // [Route("tools/{id}")]
-        public async Task<IActionResult> PutDevkitTools([FromRoute] int id, [FromBody]  DevkitTools devkittool)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
-            _context.Entry(devkittool).State = EntityState.Modified;
+        /// <summary>
+        /// Create a new Devkit
+        /// Returns the Devkit 
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///  POST /api/Devkits/
+        /// </remarks>
+        /// <returns>Returns the Devkit. If the Devkit in the request is malfomed it returns Bad request response. </returns>        
+        /// <response code="200">The Devkit was created and the Devkit returned</response>
+        /// <response code="400">Returns bad request if the Devkit is malfomed.</response>
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DevkitExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Devkits
         [HttpPost]
         public async Task<IActionResult> PostDevkit([FromBody] Devkit devkit)
         {
@@ -190,7 +149,7 @@ namespace DevkitApi.Controllers
             _context.Devkits.Add(devkit);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetDevkit", new { id = devkit.DevkitID }, devkit);
+            return CreatedAtAction("PostDevkit", new { id = devkit.DevkitID }, devkit);
         }
 
       // POST: api/Devkits/details
@@ -265,5 +224,62 @@ namespace DevkitApi.Controllers
         {
             return _context.Devkits.Any(e => e.DevkitID == id);
         }
+
+        /// <summary>
+        /// Returns the tools for a Devkit with the specificed id 
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///  GET /api/Devkits/tools/5        
+        /// </remarks>
+        /// <returns>Returns the tools for a Devkit with the specificed id if it exist. If it does not exist it returns empty. If id is not an int it returns Bad request.</returns>
+        /// <response code="200">Returns a the tools for the Devkit with the specificed id</response>
+        /// <response code="400">Returns bad request if the id is not an int.</response>        
+        [HttpGet("tools/{id}")]
+        [ProducesResponseType(typeof(String), 200)]
+        [ProducesResponseType(typeof(String), 400)]
+        public IActionResult GetToolsForKit([FromRoute] int id)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            return Ok(_devkitService.GetToolsForDevkit(id));
+        }
+
+        // PUT: api/Devkits/5
+        [HttpPut("tools/{id}")]
+        // [Route("tools/{id}")]
+        public async Task<IActionResult> PutDevkitTools([FromRoute] int id, [FromBody]  DevkitTools devkittool)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _context.Entry(devkittool).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!DevkitExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+
     }
 }
