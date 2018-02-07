@@ -237,50 +237,6 @@
 				"description": "Get tools for a Devkit that does not exist. Should result in empty response."
 			},
 			"response": []
-		},
-		{
-			"name": "Create a new devkit",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"pm.test(\"Status code is 201\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"Devkit for .NET Framework\",\n    \"shortName\": \".NET devkit\",\n    \"description\": \"For developers working in .NET Framework we have a set of resources that help you get going with your development with a swosh. Check out the items in the Devkit below.\",\n    \"email\": \"mats.skoglund@devkits.com\",\n    \"devkitTools\": null\n}"
-				},
-				"url": {
-					"raw": "http://localhost:5000/api/Devkits/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"Devkits",
-						""
-					]
-				},
-				"description": "Create a new Devkit"
-			},
-			"response": []
 		}
 	],
 	"event": [
