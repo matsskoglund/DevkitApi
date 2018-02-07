@@ -17,13 +17,10 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image
       - docker build -t matsskoglund/devkitapi:latest .
-  test:
+  post_build:
     commands:
       - docker run -d -e ASPNETCORE_ENVIRONMENT=Staging -p 5000:5000 matsskoglund/devkitapi:lates 
       - newman run "https://raw.githubusercontent.com/matsskoglund/DevkitApi/master/test/DevkitApi.Test_Nondestructive.postman_collection.json"
-
-  post_build:
-    commands:
       - docker login -u=$docker_user -p=$docker_pass
       - docker push matsskoglund/devkitapi:latest
 artifacts:
