@@ -1,7 +1,7 @@
 {
 	"info": {
-		"name": "DevkitApi.Test",
-		"_postman_id": "35b3167f-c78f-6304-c65e-033143f9332e",
+		"name": "DevkitApi.Test_Nondestructive",
+		"_postman_id": "75608b57-5e0d-92a1-63d1-e156d69e5695",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -281,140 +281,28 @@
 				"description": "Create a new Devkit"
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "b1ed090b-6577-44e5-a977-160c878a84d2",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		},
 		{
-			"name": "Delete an existing devkit",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "76e599da-f134-4661-94f4-ff1444e02c3a",
-						"type": "text/javascript",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"Devkit for .NET Framework\",\n    \"shortName\": \".NET devkit\",\n    \"description\": \"For developers working in .NET Framework we have a set of resources that help you get going with your development with a swosh. Check out the items in the Devkit below.\",\n    \"email\": \"mats.skoglund@devkits.com\",\n    \"devkitTools\": null\n}"
-				},
-				"url": {
-					"raw": "http://localhost:5000/api/Devkits/1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"Devkits",
-						"1"
-					]
-				},
-				"description": "Delete Devkit 1"
-			},
-			"response": []
-		},
-		{
-			"name": "Try to delete a devkit without sending id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "2d23fb29-6fa8-4621-b695-f1939511e1e1",
-						"type": "text/javascript",
-						"exec": [
-							"pm.test(\"Status code is 404\", function () {",
-							"    pm.response.to.have.status(404);",
-							"});"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"Devkit for .NET Framework\",\n    \"shortName\": \".NET devkit\",\n    \"description\": \"For developers working in .NET Framework we have a set of resources that help you get going with your development with a swosh. Check out the items in the Devkit below.\",\n    \"email\": \"mats.skoglund@devkits.com\",\n    \"devkitTools\": null\n}"
-				},
-				"url": {
-					"raw": "http://localhost:5000/api/Devkits/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"Devkits",
-						""
-					]
-				},
-				"description": "Delete Devkit without id."
-			},
-			"response": []
-		},
-		{
-			"name": "Delete tools for an existing devkit",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "3a493c8a-2fd7-42a7-a6eb-a41f2052b7d6",
-						"type": "text/javascript",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"",
-							"",
-							"pm.test(\"Body is correct\", function () {",
-							"    pm.response.to.have.body(\"4\");",
-							"});"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://localhost:5000/api/Devkits/tools/2",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "5000",
-					"path": [
-						"api",
-						"Devkits",
-						"tools",
-						"2"
-					]
-				},
-				"description": ""
-			},
-			"response": []
+			"listen": "test",
+			"script": {
+				"id": "f2ebad34-3f5a-4d76-9bb3-0c791f52b2d4",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }

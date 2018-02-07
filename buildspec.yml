@@ -11,11 +11,17 @@ phases:
     commands:
       - echo Configuring DB endpoint
       - sed -i "s/server=127.0.0.1;userid=root;password=mypass;database=devkit;/$DefaultConnection/g" appsettings.json
+      - npm install newman --global
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image
       - docker build -t matsskoglund/devkitapi:latest .
+  test:
+    commands:
+      - docker run -d -e ASPNETCORE_ENVIRONMENT=Staging -p 5000:5000 matsskoglund/devkitapi:lates 
+      - newman run "https://raw.githubusercontent.com/matsskoglund/DevkitApi/master/test/DevkitApi.Test_Nondestructive.postman_collection.json"
+
   post_build:
     commands:
       - docker login -u=$docker_user -p=$docker_pass

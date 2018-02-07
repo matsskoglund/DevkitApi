@@ -1,4 +1,5 @@
 ﻿using DevkitApi.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,10 @@ namespace DevkitApi
         public static void Initialize(IServiceProvider services)
         {
             var context = services.GetRequiredService<DevkitContext>();
+           // context.Database.OpenConnection();
             context.Database.EnsureCreated();
-            if (!context.Tools.Any())
+            bool toolEx = context.Tools.Any();
+            if (!toolEx)
             {
                 context.Tools.Add(new Model.Tool()
                 {
