@@ -22,7 +22,7 @@ phases:
   post_build:
     commands:
       - docker run -d -e ASPNETCORE_ENVIRONMENT=Staging -p 5000:5000 matsskoglund/devkitapi:latest 
-      - newman run -x "https://raw.githubusercontent.com/matsskoglund/DevkitApi/master/test/DevkitApi.Test_Nondestructive.postman_collection.json"
+      - newman run "https://raw.githubusercontent.com/matsskoglund/DevkitApi/master/test/DevkitApi.Test_Nondestructive.postman_collection.json" -x --silent
       - docker login -u=$docker_user -p=$docker_pass
       - docker push matsskoglund/devkitapi:latest
 artifacts:
