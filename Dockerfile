@@ -2,17 +2,20 @@
 WORKDIR /app
 
 # Copy csproj and restore as distinct layers
-COPY *.csproj ./
+
+COPY . ./
+
 RUN dotnet restore
+RUN dotnet test test/DevkitApi.UnitTest/DevkitApi.UnitTest.csproj
 
 # Copy everything else and build
 COPY . ./
-RUN dotnet publish -o out
+RUN dotnet publish src/DevkitApi.csproj -o out
 
 # Build runtime image
 FROM microsoft/aspnetcore:2.0
 WORKDIR /app
-COPY --from=build-env /app/out .
+COPY --from=build-env /app/src/out .
 EXPOSE 5000
 ENV ASPNETCORE_URLS http://*:5000
 ENTRYPOINT ["dotnet", "DevkitApi.dll"]

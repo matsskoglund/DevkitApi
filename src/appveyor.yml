@@ -1,0 +1,19 @@
+version: 1.0.{build}
+
+image: Visual Studio 2017
+environment:
+  DOCKER_USER:
+    secure: J2M8TwtcEMAaHn7jrFEpMg==
+  DOCKER_PASS:
+    secure: /ghqbCXBo5yebZkklH+X9w==
+build_script:
+- cmd: docker build -t matsskoglund/devkitapi:latest .
+deploy_script:
+- cmd: >-
+    docker login -u=%DOCKER_USER% -p=%DOCKER_PASS%
+
+    //docker push matsskoglund/devkitapi:latest
+
+    docker tag matsskoglund/devkitapi:latest matsskoglund/devkitapi:%APPVEYOR_BUILD_ID%
+
+    //docker push matsskoglund/devkitapi:%APPVEYOR_BUILD_ID%

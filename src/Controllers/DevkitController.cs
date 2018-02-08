@@ -20,13 +20,13 @@ namespace DevkitApi.Controllers
     [Route("api/[controller]")]
     public class DevkitsController : Controller
     {
-        private readonly DevkitContext _context;
+      
         private IDevkitService _devkitService;
         private readonly ILogger _logger;
 
-        public DevkitsController(DevkitContext context, IDevkitService devkitService, ILogger<DevkitsController> logger)
+        public DevkitsController(IDevkitService devkitService, ILogger<DevkitsController> logger)
         {
-            _context = context;
+         
             _devkitService = devkitService;
             _logger = logger;
         }
@@ -42,7 +42,7 @@ namespace DevkitApi.Controllers
         /// <returns>Returns all Devkits</returns>
         /// <response code="200">Returns all Devkits</response>
         [HttpGet("")]
-        [ProducesResponseType(typeof(Devkit), 200)]
+        [ProducesResponseType(typeof(IEnumerable<Devkit>), 200)]
         public IEnumerable<Devkit> GetDevkits()
         {
             return _devkitService.GetDevkits();
@@ -61,8 +61,8 @@ namespace DevkitApi.Controllers
         /// <response code="200">Returns a Devkit with the specificed id</response>
         /// <response code="400">Returns bad request if the id is not an int.</response>
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(String), 200)]
-        [ProducesResponseType(typeof(String), 400)]
+        [ProducesResponseType(typeof(IActionResult), 200)]
+        [ProducesResponseType(typeof(IActionResult), 400)]
         public  IActionResult  GetDevkit([FromRoute] int id)
         {
            
@@ -89,8 +89,8 @@ namespace DevkitApi.Controllers
         /// <response code="200">Returns a the tools for the Devkit with the specificed id</response>
         /// <response code="400">Returns bad request if the id is not an int or if the id does not match the Devkit id in the body.</response>
         [HttpPut("{id}")]
-        [ProducesResponseType(typeof(String), 200)]
-        [ProducesResponseType(typeof(String), 400)]
+        [ProducesResponseType(typeof(Task<IActionResult>), 200)]
+        [ProducesResponseType(typeof(Task<IActionResult>), 400)]
         public async Task<IActionResult> PutDevkit([FromRoute] int id, [FromBody] Devkit devkit)
         {
             if (!ModelState.IsValid)
@@ -141,6 +141,8 @@ namespace DevkitApi.Controllers
         /// <response code="400">Returns bad request if the Devkit is malfomed.</response>
 
         [HttpPost]
+        [ProducesResponseType(typeof(Task<IActionResult>), 201)]
+        [ProducesResponseType(typeof(Task<IActionResult>), 400)]
         public async Task<IActionResult> PostDevkit([FromBody] Devkit devkit)
         {
             if (!ModelState.IsValid)
@@ -159,6 +161,8 @@ namespace DevkitApi.Controllers
        
         [HttpPost("tools")]
         //[Route("tools")]
+        [ProducesResponseType(typeof(Task<IActionResult>), 200)]
+        [ProducesResponseType(typeof(Task<IActionResult>), 400)]
         public async Task<IActionResult> PostDevkitTool([FromBody] DevkitTools devkittool)
         {
             if (!ModelState.IsValid)
@@ -175,9 +179,11 @@ namespace DevkitApi.Controllers
             //return CreatedAtAction("PostDevkitTool", new { id = devkittool.DevkitToolsID }, devkittool);
             return Ok();
         }
-        
+
         // DELETE: api/Devkits/5
         // Delete the Devkit
+        [ProducesResponseType(typeof(Task<IActionResult>), 200)]
+        [ProducesResponseType(typeof(Task<IActionResult>), 400)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDevkit([FromRoute] int id)
         {
@@ -206,7 +212,9 @@ namespace DevkitApi.Controllers
         // DELETE: api/tools/5
         // Delete the tools from the devkit
         [HttpDelete("tools/{id}")]
-       // [Route("tools/{id}")]
+        // [Route("tools/{id}")]
+        [ProducesResponseType(typeof(Task<IActionResult>), 200)]
+        [ProducesResponseType(typeof(Task<IActionResult>), 400)]
         public async Task<IActionResult> DeleteDevkitTools([FromRoute] int id)
         {
             if (!ModelState.IsValid)
