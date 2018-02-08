@@ -10,7 +10,7 @@ phases:
   install:
     commands:
       - echo Configuring DB endpoint
-      - sed -i "s/server=127.0.0.1;userid=root;password=mypass;database=devkit;/$DefaultConnection/g" appsettings.json
+      - sed -i "s/server=127.0.0.1;userid=root;password=mypass;database=devkit;/$DefaultConnection/g" src/appsettings.json
       - curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
       - apt-get install -y nodejs
       - npm install newman --global
