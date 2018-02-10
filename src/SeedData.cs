@@ -12,7 +12,9 @@ namespace DevkitApi
     {
         public static void Initialize(IServiceProvider services)
         {
+            Console.WriteLine("Starting seed data");
             var context = services.GetRequiredService<DevkitContext>();
+            Console.WriteLine("Finished seed data");
            // context.Database.OpenConnection();
             context.Database.EnsureCreated();
             bool toolEx = context.Tools.Any();

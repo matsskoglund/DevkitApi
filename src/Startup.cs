@@ -77,6 +77,7 @@ namespace DevkitApi
 
             if (_env.IsDevelopment() || _env.IsStaging())
             {
+                _logger.LogDebug("Environment is Development or Staging");
 
                 //services.AddDbContext<DevkitContext>(options => options.UseInMemoryDatabase(databaseName: "database"));
                 services.AddDbContext<DevkitContext>(options =>options.UseSqlite("Data Source=devkit.db"));
@@ -85,6 +86,7 @@ namespace DevkitApi
             }
             else
             {
+                _logger.LogDebug("Environment is Production");
                 services.AddDbContext<DevkitContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
             }            
             services.AddTransient<IDevkitService, DevkitService>();

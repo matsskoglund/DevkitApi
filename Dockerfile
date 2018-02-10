@@ -7,6 +7,7 @@ COPY . ./
 
 RUN dotnet restore
 RUN dotnet test test/DevkitApi.UnitTest/DevkitApi.UnitTest.csproj
+RUN dotnet test test/DevkitApi.IntTest/DevkitApi.IntTest.csproj
 
 # Copy everything else and build
 COPY . ./

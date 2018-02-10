@@ -6,12 +6,12 @@ D:\dev\DevkitApi\test\DevkitApi.UnitTest\bin\Debug\netcoreapp2.0\DevkitApi.UnitT
 D:\dev\DevkitApi\test\DevkitApi.UnitTest\bin\Debug\netcoreapp2.0\DevkitApi.UnitTest.runtimeconfig.dev.json
 D:\dev\DevkitApi\test\DevkitApi.UnitTest\bin\Debug\netcoreapp2.0\DevkitApi.UnitTest.dll
 D:\dev\DevkitApi\test\DevkitApi.UnitTest\bin\Debug\netcoreapp2.0\DevkitApi.UnitTest.pdb
+D:\dev\DevkitApi\test\DevkitApi.UnitTest\bin\Debug\netcoreapp2.0\DevkitApi.dll
+D:\dev\DevkitApi\test\DevkitApi.UnitTest\bin\Debug\netcoreapp2.0\DevkitApi.pdb
+D:\dev\DevkitApi\test\DevkitApi.UnitTest\bin\Debug\netcoreapp2.0\DevkitApi.xml
+D:\dev\DevkitApi\test\DevkitApi.UnitTest\obj\Debug\netcoreapp2.0\DevkitApi.UnitTest.csprojResolveAssemblyReference.cache
 D:\dev\DevkitApi\test\DevkitApi.UnitTest\obj\Debug\netcoreapp2.0\DevkitApi.UnitTest.csproj.CoreCompileInputs.cache
 D:\dev\DevkitApi\test\DevkitApi.UnitTest\obj\Debug\netcoreapp2.0\DevkitApi.UnitTest.AssemblyInfoInputs.cache
 D:\dev\DevkitApi\test\DevkitApi.UnitTest\obj\Debug\netcoreapp2.0\DevkitApi.UnitTest.AssemblyInfo.cs
 D:\dev\DevkitApi\test\DevkitApi.UnitTest\obj\Debug\netcoreapp2.0\DevkitApi.UnitTest.dll
 D:\dev\DevkitApi\test\DevkitApi.UnitTest\obj\Debug\netcoreapp2.0\DevkitApi.UnitTest.pdb
-D:\dev\DevkitApi\test\DevkitApi.UnitTest\obj\Debug\netcoreapp2.0\DevkitApi.UnitTest.csprojResolveAssemblyReference.cache
-D:\dev\DevkitApi\test\DevkitApi.UnitTest\bin\Debug\netcoreapp2.0\DevkitApi.dll
-D:\dev\DevkitApi\test\DevkitApi.UnitTest\bin\Debug\netcoreapp2.0\DevkitApi.pdb
-D:\dev\DevkitApi\test\DevkitApi.UnitTest\bin\Debug\netcoreapp2.0\DevkitApi.xml
