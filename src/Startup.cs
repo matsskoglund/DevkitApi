@@ -75,14 +75,23 @@ namespace DevkitApi
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
 
-            if (_env.IsDevelopment() || _env.IsStaging())
+            if (_env.IsDevelopment())
             {
-                _logger.LogDebug("Environment is Development or Staging");
+                _logger.LogDebug("Environment is Development");
 
                 //services.AddDbContext<DevkitContext>(options => options.UseInMemoryDatabase(databaseName: "database"));
                 services.AddDbContext<DevkitContext>(options =>options.UseSqlite("Data Source=devkit.db"));
-               // services.AddDbContext<DevkitContext>(options => options.UseSqlite("DataSource =:memory:"));
-                
+                // services.AddDbContext<DevkitContext>(options => options.UseSqlite("DataSource =:memory:"));
+
+            }
+            if (_env.IsStaging())
+            {
+                _logger.LogDebug("Environment is Staging");
+
+                //services.AddDbContext<DevkitContext>(options => options.UseInMemoryDatabase(databaseName: "database"));
+                //services.AddDbContext<DevkitContext>(options => options.UseSqlite("Data Source=devkit.db"));
+                // services.AddDbContext<DevkitContext>(options => options.UseSqlite("DataSource =:memory:"));
+                services.AddDbContext<DevkitContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
             }
             else
             {

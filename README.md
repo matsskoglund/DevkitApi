@@ -13,12 +13,20 @@
 `docker build -t matsskoglund/devkitapi:latest .`
 
 ## Running in Staging mode
-Will create and use internal sqlite db. I use Staging mode for testing for the moment.
+Will create and use internal sqlite db. I use Development mode for testing for the moment.
 
-`docker run -e ASPNETCORE_ENVIRONMENT=Staging -it -p 5000:5000 matsskoglund/devkitapi:latest`
+`docker run -e ASPNETCORE_ENVIRONMENT=Staging --net=host -it -p 5000:5000 matsskoglund/devkitapi:latest`
 
 ## Run the Postman tests
 `cd test`
 `newman run DevkitApi.Test.postman_collection.json`
 
-
+# Using Docker networking
+`docker network create devkitapinet`
+`docker network ls`
+`docker run --net=devkitapinet --name devkitapidb -e MYSQL_ROOT_PASSWORD=mypass -d mariadb`
+`docker build -t matsskoglund/devkitapi:latest .`
+`docker run -e ASPNETCORE_ENVIRONMENT=Staging --net=devkitapinet --name devkitapi -d -p 5000:5000 matsskoglund/devkitapi:latest`
+`newman run https://raw.githubusercontent.com/matsskoglund/DevkitApi/master/test/DevkitApi.Test.postman_collection.json`
+`docker stop devkitapidb`
+`docker network rm devkitapinet`
