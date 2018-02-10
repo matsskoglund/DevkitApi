@@ -14,6 +14,9 @@ phases:
       - curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
       - apt-get install -y nodejs
       - npm install newman --global
+      - docker network create devkitapinet
+      - docker network ls
+      - docker run --net=devkitapinet --name devkitapidb -e MYSQL_ROOT_PASSWORD=mypass -d mariadb
   build:
     commands:
       - echo Build started on `date`
@@ -21,8 +24,10 @@ phases:
       - docker build -t matsskoglund/devkitapi:latest .
   post_build:
     commands:
-      - docker run -d -e ASPNETCORE_ENVIRONMENT=Staging -p 5000:5000 matsskoglund/devkitapi:latest 
+      - docker run -e ASPNETCORE_ENVIRONMENT=Staging --net=devkitapinet --name devkitapi -d -p 5000:5000 matsskoglund/devkitapi:latest      
       - newman run "https://raw.githubusercontent.com/matsskoglund/DevkitApi/master/test/DevkitApi.Test_Nondestructive.postman_collection.json" -x
+      - docker stop devkitapidb
+      - docker network rm devkitapinet
       - docker login -u=$docker_user -p=$docker_pass
       - docker push matsskoglund/devkitapi:latest
 artifacts:
