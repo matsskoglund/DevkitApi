@@ -10,26 +10,14 @@ phases:
   install:
     commands:
       - echo Configuring DB endpoint
-      - sed -i "s/server=127.0.0.1;userid=root;password=mypass;database=devkit;/$DefaultConnection/g" src/appsettings.json
-      - curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-      - apt-get install -y nodejs
-      - npm install newman --global
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image
-      - docker build -t matsskoglund/devkitapi:latest .
   post_build:
     commands:
-      - docker network create devkitapinet
-      - docker network ls
-      - docker run --net=devkitapinet --name devkitapidb -e MYSQL_ROOT_PASSWORD=mypass -d mariadb
-      - docker run -e ASPNETCORE_ENVIRONMENT=Staging --net=devkitapinet --name devkitapi -d -p 5000:5000 matsskoglund/devkitapi:latest      
-      - newman run "https://raw.githubusercontent.com/matsskoglund/DevkitApi/master/test/DevkitApi.Test_Nondestructive.postman_collection.json" -x
-      - docker stop devkitapidb devkitapi
-      - docker network rm devkitapinet
-      - docker login -u=$docker_user -p=$docker_pass
-      - docker push matsskoglund/devkitapi:latest
+      - echo Updating the service
+      - aws cli update-service --service devkit-service --desired-count 4
 artifacts:
   files:
     - imagedefinitions.json    
