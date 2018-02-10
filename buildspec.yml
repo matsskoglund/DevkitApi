@@ -17,7 +17,7 @@ phases:
   post_build:
     commands:
       - echo Updating the service
-      - aws cli update-service --service devkit-service --desired-count 2
+      - aws ecs update-service --service devkit-service --desired-count 2
 artifacts:
   files:
     - imagedefinitions.json    
