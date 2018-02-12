@@ -21,7 +21,7 @@ namespace DevkitApi
             .UseIISIntegration()
             .UseStartup<Startup>()
             .ConfigureLogging(f => f.AddConsole())
-            .UseUrls("http://0.0.0.0:5000")
+            //.UseUrls("http://0.0.0.0:5000")
             .Build();
 
             using (var scope = host.Services.CreateScope())

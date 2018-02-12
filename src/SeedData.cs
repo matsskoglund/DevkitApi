@@ -174,7 +174,13 @@ namespace DevkitApi
                     ToolType = "Optional"
                 });
             }
-            context.SaveChanges();
+            try
+            {
+                context.SaveChanges();
+            }catch(Exception e)
+            {
+                System.Console.WriteLine("Database problem " + context.ToString() + " " + e.StackTrace);
+            }
         }
     }
 }
