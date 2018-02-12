@@ -35,4 +35,4 @@ phases:
       - aws ecs update-service --cluster devkit-api --service devkit-service --desired-count 1
 artifacts:
   files:
-    - imagedefinitions.json    
+    - imagedefinitions.json
