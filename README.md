@@ -30,11 +30,15 @@ Will create and use internal sqlite db. I use Development mode for testing for t
 
 `docker build -t matsskoglund/devkitapi:latest .`
 
+`set DBCONNECTION=server=devkitapidb;userid=root;password=mypass;database=devkit;`
+
 `docker run -e ASPNETCORE_ENVIRONMENT=Staging -e DBCONNECTION=%DBCONNECTION% --net=devkitapinet --name devkitapi -d -p 5000:5000 matsskoglund/devkitapi:latest`
 
 `newman run https://raw.githubusercontent.com/matsskoglund/DevkitApi/master/test/DevkitApi.Test.postman_collection.json`
 
 `docker stop devkitapidb`
 
-`docker network rm devkitapinet`
+`docker stop devkitapi`
+
+`docker network prune -f`
 

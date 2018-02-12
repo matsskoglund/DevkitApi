@@ -30,7 +30,7 @@ namespace DevkitApi
                 var context = services.GetRequiredService<DevkitContext>();
                 try
                 {
-                    SeedData.Initialize(services);
+                    SeedData.Initialize(services, context);
                 }
                 catch (Exception ex)
                 {

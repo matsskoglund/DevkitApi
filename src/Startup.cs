@@ -38,8 +38,6 @@ namespace DevkitApi
             }
 
             Configuration = builder.Build();
-            //ConnectionString = Configuration.GetConnectionString("DefaultConnection");
-           // ConnectionString = Configuration.GetConnectionString("DBCONNECTION");
             ConnectionString = Environment.GetEnvironmentVariable("DBCONNECTION");
             
             _logger.LogInformation("DBCONNECTION: " + Environment.GetEnvironmentVariable("DBCONNECTION"));
@@ -99,8 +97,8 @@ namespace DevkitApi
                 //services.AddDbContext<DevkitContext>(options => options.UseInMemoryDatabase(databaseName: "database"));
                 //services.AddDbContext<DevkitContext>(options => options.UseSqlite("Data Source=devkit.db"));
                 // services.AddDbContext<DevkitContext>(options => options.UseSqlite("DataSource =:memory:"));
-                //services.AddDbContext<DevkitContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
-                services.AddDbContext<DevkitContext>(options => options.UseMySQL(Environment.GetEnvironmentVariable("DBCONNECTION")));
+                services.AddDbContext<DevkitContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+                //services.AddDbContext<DevkitContext>(options => options.UseMySQL(Environment.GetEnvironmentVariable("DBCONNECTION")));
             }
             else
             {

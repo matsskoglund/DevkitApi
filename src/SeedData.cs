@@ -10,12 +10,12 @@ namespace DevkitApi
 {
     public static class SeedData
     {
-        public static void Initialize(IServiceProvider services)
+        public static void Initialize(IServiceProvider services, DevkitContext context)
         {
             Console.WriteLine("Starting seed data");
-            var context = services.GetRequiredService<DevkitContext>();
+            //var context = services.GetRequiredService<DevkitContext>();
             Console.WriteLine("Finished seed data");
-           // context.Database.OpenConnection();
+           
             context.Database.EnsureCreated();
             bool toolEx = context.Tools.Any();
             if (!toolEx)
