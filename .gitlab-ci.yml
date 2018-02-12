@@ -1,6 +1,18 @@
-image:microsoft/aspnetcore:2.0
-            
-job1:
-      - echo Build started on `date`
-      - echo Building the Docker image
-      - docker build -t matsskoglund/devkitapi:latest .
+image: docker:latest
+
+# When using dind, it's wise to use the overlayfs driver for
+# improved performance.
+variables:
+  DOCKER_DRIVER: overlay2
+
+services:
+- docker:dind
+
+before_script:
+- docker info
+
+build:
+  stage: build
+  script:
+  - docker build -t matsskoglund/devkitapi:latest .
+#  - docker run matsskoglund/devkitapi:latest /script/to/run/tests

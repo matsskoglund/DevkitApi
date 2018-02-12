@@ -38,7 +38,10 @@ namespace DevkitApi
             }
 
             Configuration = builder.Build();
-            ConnectionString = Configuration.GetConnectionString("DefaultConnection");
+            //ConnectionString = Configuration.GetConnectionString("DefaultConnection");
+            ConnectionString = Configuration.GetConnectionString("DBCONNECTION");
+            ConnectionString = Environment.GetEnvironmentVariable("DBCONNECTION");
+            _logger.LogInformation("DBCONNECTION: " + Environment.GetEnvironmentVariable("DBCONNECTION"));
             _logger.LogInformation("ConnectionString: " + ConnectionString);
         }
 
@@ -48,7 +51,8 @@ namespace DevkitApi
                 .AddUserSecrets<Startup>();
 
             IConfigurationRoot Configuration = builder.Build();
-            ConnectionString = Configuration.GetConnectionString("DefaultConnection");
+            //ConnectionString = Configuration.GetConnectionString("DefaultConnection");
+            ConnectionString = Environment.GetEnvironmentVariable("DBCONNECTION");
             System.Console.WriteLine("GetConnectionString: " + ConnectionString);
             return ConnectionString;
         }
