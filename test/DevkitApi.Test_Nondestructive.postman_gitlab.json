@@ -30,7 +30,7 @@
 					"raw": "http://devkitapi:5000/api/Devkits",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"devkitapi"
 					],
 					"port": "5000",
 					"path": [
@@ -68,7 +68,7 @@
 					"raw": "http://devkitapi:5000/api/Devkits/1",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"devkitapi"
 					],
 					"port": "5000",
 					"path": [
@@ -108,7 +108,7 @@
 					"raw": "http://devkitapi:5000/api/Devkits/111",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"devkitapi"
 					],
 					"port": "5000",
 					"path": [
@@ -148,7 +148,7 @@
 					"raw": "http://devkitapi:5000/api/Devkits/tools/1",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"devkitapi"
 					],
 					"port": "5000",
 					"path": [
@@ -186,7 +186,7 @@
 					"raw": "http://devkitapi:5000/api/Devkits/tools/j",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"devkitapi"
 					],
 					"port": "5000",
 					"path": [
@@ -224,7 +224,7 @@
 					"raw": "http://devkitapi:5000/api/Devkits/tools/9",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"devkitapi"
 					],
 					"port": "5000",
 					"path": [
