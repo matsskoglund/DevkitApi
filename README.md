@@ -41,4 +41,3 @@ Will create and use internal sqlite db. I use Development mode for testing for t
 `docker stop devkitapi`
 
 `docker network prune -f`
-
