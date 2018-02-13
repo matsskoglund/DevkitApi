@@ -7,12 +7,30 @@ variables:
 
 services:
 - docker:dind
+- mariadb
 
-before_script:
-- docker info
+stages:
+  - build
+  - test
+  - deploy
 
 build:
   stage: build
   script:
+  - ./docker_clear.sh
   - docker build -t matsskoglund/devkitapi:latest .
-#  - docker run matsskoglund/devkitapi:latest /script/to/run/tests
+  - docker network prune -f
+  - docker network create devkitapinet
+  - docker run --net=devkitapinet --name devkitapidb -e MYSQL_ROOT_PASSWORD=mypass -d mariadb
+  - export DBCONNECTION='server=devkitapidb;userid=root;password=mypass;database=devkit;'
+  - docker run -e ASPNETCORE_ENVIRONMENT=Staging -e DBCONNECTION=$DBCONNECTION --net=devkitapinet --name devkitapi -d -p 5000:5000 matsskoglund/devkitapi:latest
+  - sleep 20
+  - docker run --net=devkitapinet --name newman -t postman/newman_alpine33  run "https://gitlab.com/matsskoglund/DevkitApi/raw/b025536d88cdaaafdcb0454d870e2438c36125a8/test/DevkitApi.Test_Nondestructive.postman_gitlab.json"
+  - docker stop devkitapidb devkitapi
+  - docker network prune -f
+  - unset DBCONNECTION
+deploy:
+  stage: deploy
+  script:
+  - docker login -u=$docker_user -p=$docker_pass
+  - docker push matsskoglund/devkitapi:latest

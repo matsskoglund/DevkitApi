@@ -1,0 +1,264 @@
+{
+	"info": {
+		"name": "DevkitApi.Test_Nondestructive",
+		"_postman_id": "75608b57-5e0d-92a1-63d1-e156d69e5695",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all devkits",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "582926d3-45ea-414c-878e-a094d948ba0a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://devkitapi:5000/api/Devkits",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Devkits"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get existing devkit",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d9b7037f-c196-48eb-a70e-8531f9feb653",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://devkitapi:5000/api/Devkits/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Devkits",
+						"1"
+					]
+				},
+				"description": "Get one Devkit"
+			},
+			"response": []
+		},
+		{
+			"name": "Try to get nonexisting devkit",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a9c45f73-9bad-4b98-91c4-34d0d151b7f0",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://devkitapi:5000/api/Devkits/111",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Devkits",
+						"111"
+					]
+				},
+				"description": "Get one Devkit that does not exist"
+			},
+			"response": []
+		},
+		{
+			"name": "Get tools for a devkit that exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a9c45f73-9bad-4b98-91c4-34d0d151b7f0",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://devkitapi:5000/api/Devkits/tools/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Devkits",
+						"tools",
+						"1"
+					]
+				},
+				"description": "Get the tools for one Devkit"
+			},
+			"response": []
+		},
+		{
+			"name": "Try to get tools for a devkit with malformed id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4d8c6b50-b80b-4f11-9ede-07ac0606fee0",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://devkitapi:5000/api/Devkits/tools/j",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Devkits",
+						"tools",
+						"j"
+					]
+				},
+				"description": "Trying to get tools for a Devkit referenced by a character instead of int. Should result in \"Bad request\" response."
+			},
+			"response": []
+		},
+		{
+			"name": "Try to get devkit that does not exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a9c45f73-9bad-4b98-91c4-34d0d151b7f0",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://devkitapi:5000/api/Devkits/tools/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"Devkits",
+						"tools",
+						"9"
+					]
+				},
+				"description": "Get tools for a Devkit that does not exist. Should result in empty response."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "b1ed090b-6577-44e5-a977-160c878a84d2",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "f2ebad34-3f5a-4d76-9bb3-0c791f52b2d4",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

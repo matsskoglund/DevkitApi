@@ -1038,10 +1038,10 @@
           "lib/netstandard2.0/Microsoft.EntityFrameworkCore.Sqlite.dll": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.SqlServer/2.0.1": {
+      "Microsoft.EntityFrameworkCore.SqlServer/2.0.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "2.0.1",
+          "Microsoft.EntityFrameworkCore.Relational": "2.0.0",
           "System.Data.SqlClient": "4.4.0"
         },
         "compile": {
@@ -4388,7 +4388,7 @@
           "Microsoft.EntityFrameworkCore": "2.0.1",
           "Microsoft.EntityFrameworkCore.Design": "2.0.1",
           "Microsoft.EntityFrameworkCore.InMemory": "2.0.1",
-          "Microsoft.EntityFrameworkCore.SqlServer": "2.0.1",
+          "Microsoft.EntityFrameworkCore.SqlServer": "2.0.0",
           "Microsoft.EntityFrameworkCore.Sqlite": "2.0.1",
           "Microsoft.EntityFrameworkCore.Tools": "2.0.0",
           "Microsoft.Extensions.Configuration.UserSecrets": "2.0.0",
@@ -5244,14 +5244,14 @@
         "microsoft.entityframeworkcore.sqlite.core.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.SqlServer/2.0.1": {
-      "sha512": "+UnKJpkVpuNWRjF3BWSzbkQLL7gxY18Hnh5uXmlagO4Ua8BstqWIJaIUV+Ps2rw/2n62UPTQQV9RQWggV7OH9Q==",
+    "Microsoft.EntityFrameworkCore.SqlServer/2.0.0": {
+      "sha512": "mr+S07kAKXsdu9207w1ek4O1/0+y5925kMYy7gCqu15QpvfVXOLdAR0b9RQfBxmtAJPrYx6/KtfvAg70jm5zUA==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.sqlserver/2.0.1",
+      "path": "microsoft.entityframeworkcore.sqlserver/2.0.0",
       "files": [
         "lib/netstandard2.0/Microsoft.EntityFrameworkCore.SqlServer.dll",
         "lib/netstandard2.0/Microsoft.EntityFrameworkCore.SqlServer.xml",
-        "microsoft.entityframeworkcore.sqlserver.2.0.1.nupkg.sha512",
+        "microsoft.entityframeworkcore.sqlserver.2.0.0.nupkg.sha512",
         "microsoft.entityframeworkcore.sqlserver.nuspec"
       ]
     },
@@ -11762,15 +11762,12 @@
   },
   "project": {
     "version": "1.0.0",
-    "restoreSettings": {
-      "hideWarningsAndErrors": true
-    },
     "restore": {
-      "projectUniqueName": "D:\\dev\\DevkitApi\\test\\DevkitApi.UnitTest\\DevkitApi.UnitTest.csproj",
+      "projectUniqueName": "d:\\dev\\slask\\DevkitApi\\test\\DevkitApi.UnitTest\\DevkitApi.UnitTest.csproj",
       "projectName": "DevkitApi.UnitTest",
-      "projectPath": "D:\\dev\\DevkitApi\\test\\DevkitApi.UnitTest\\DevkitApi.UnitTest.csproj",
+      "projectPath": "d:\\dev\\slask\\DevkitApi\\test\\DevkitApi.UnitTest\\DevkitApi.UnitTest.csproj",
       "packagesPath": "C:\\Users\\mats\\.nuget\\packages\\",
-      "outputPath": "D:\\dev\\DevkitApi\\test\\DevkitApi.UnitTest\\obj\\",
+      "outputPath": "d:\\dev\\slask\\DevkitApi\\test\\DevkitApi.UnitTest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -11789,8 +11786,8 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "D:\\dev\\DevkitApi\\src\\DevkitApi.csproj": {
-              "projectPath": "D:\\dev\\DevkitApi\\src\\DevkitApi.csproj"
+            "d:\\dev\\slask\\DevkitApi\\src\\DevkitApi.csproj": {
+              "projectPath": "d:\\dev\\slask\\DevkitApi\\src\\DevkitApi.csproj"
             }
           }
         }
@@ -11809,6 +11806,7 @@
             "version": "[15.5.0, )"
           },
           "Microsoft.NETCore.App": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "[2.0.0, )",
             "autoReferenced": true
