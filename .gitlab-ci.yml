@@ -5,32 +5,34 @@ image: docker:latest
 variables:
   DOCKER_DRIVER: overlay2
 
-services:
-- docker:dind
-- mariadb
-
 stages:
   - build
+  - cleanup_build
   - test
   - deploy
-
 build:
+  services:
+  - docker:dind
   stage: build
-  script:
-  - ./docker_clear.sh
-  - docker build -t matsskoglund/devkitapi:latest .
-  - docker network prune -f
-  - docker network create devkitapinet
-  - docker run --net=devkitapinet --name devkitapidb -e MYSQL_ROOT_PASSWORD=mypass -d mariadb
-  - export DBCONNECTION='server=devkitapidb;userid=root;password=mypass;database=devkit;'
-  - docker run -e ASPNETCORE_ENVIRONMENT=Staging -e DBCONNECTION=$DBCONNECTION --net=devkitapinet --name devkitapi -d -p 5000:5000 matsskoglund/devkitapi:latest
-  - sleep 20
-  - docker run --net=devkitapinet --name newman -t postman/newman_alpine33  run "https://gitlab.com/matsskoglund/DevkitApi/raw/b025536d88cdaaafdcb0454d870e2438c36125a8/test/DevkitApi.Test_Nondestructive.postman_gitlab.json"
-  - docker stop devkitapidb devkitapi
-  - docker network prune -f
-  - unset DBCONNECTION
+  script: 
+  - docker build -t matsskoglund/devkitapi:$CI_JOB_ID .
+  - docker tag matsskoglund/devkitapi:$CI_JOB_ID matsskoglund/devkitapi:latest
+  - docker tag matsskoglund/devkitapi:$CI_JOB_ID registry.gitlab.com/matsskoglund/devkitapi:$CI_JOB_ID
+  - docker tag matsskoglund/devkitapi:latest registry.gitlab.com/matsskoglund/devkitapi:latest
+  - docker ps
+  - docker login -u=$docker_user -p=$docker_pass
+  - docker push matsskoglund/devkitapi:$CI_JOB_ID
+  - docker push matsskoglund/devkitapi:latest
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+  - docker push registry.gitlab.com/matsskoglund/devkitapi:latest 
+  - docker push registry.gitlab.com/matsskoglund/devkitapi:$CI_JOB_ID 
+  tags:
+  - Docker
 deploy:
   stage: deploy
-  script:
-  - docker login -u=$docker_user -p=$docker_pass
-  - docker push matsskoglund/devkitapi:latest
+  script: 
+  - echo $(git log -1 --pretty=%B)
+  environment:
+    name: dockerhub
+    url: https://hub.docker.com/r/matsskoglund/devkitapi/
+

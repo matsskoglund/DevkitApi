@@ -1,6 +1,6 @@
 # Welcome to DevkitApi
 
-[![Build status](https://ci.appveyor.com/api/projects/status/1al4h956xqs27ta6/branch/master?svg=true)](https://ci.appveyor.com/project/matsskoglund58956/devkitapi/branch/master)
+[![pipeline status](https://gitlab.com/matsskoglund/DevkitApi/badges/master/pipeline.svg)](https://gitlab.com/matsskoglund/DevkitApi/commits/master)
 
 ![CodeBuild status](https://codebuild.eu-west-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoib1RGL0E0Y0Nib2taRElyL1ZUTmNWaGVKRENFWkxSQ0x6Y1J3WG0wQys4REpUcmw4OHZ6SWRxbzlOWGxmMmgzVDdWSFo5T1ZzZHlDOXVCOHI2aVBKTWpBPSIsIml2UGFyYW1ldGVyU3BlYyI6Imcrb0FaV1ZiWThSeWdNZ0EiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
 

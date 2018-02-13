@@ -8,7 +8,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2545A9C1-30FE-4FF0-A1E7-53EC211A0CB9}"
 	ProjectSection(SolutionItems) = preProject
 		test\DevkitApi.Test_Nondestructive.postman_collection.json = test\DevkitApi.Test_Nondestructive.postman_collection.json
-		test\DevkitApi.Test_Nondestructive.postman_gitlab.json = test\DevkitApi.Test_Nondestructive.postman_gitlab.json
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevkitApi.UnitTest", "test\DevkitApi.UnitTest\DevkitApi.UnitTest.csproj", "{6B8D89CA-1426-4F7D-B1F1-3B65A9B2166F}"
