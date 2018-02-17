@@ -51,10 +51,8 @@ namespace DevkitApi
                 .AddEnvironmentVariables();
 
             IConfigurationRoot Configuration = builder.Build();
-            //ConnectionString = Configuration.GetConnectionString("DefaultConnection");
-            ConnectionString = Environment.GetEnvironmentVariable("DBCONNECTION");
             
-            System.Console.WriteLine("GetConnectionString: " + ConnectionString);
+            ConnectionString = Environment.GetEnvironmentVariable("DBCONNECTION");
             
             return ConnectionString;
         }
